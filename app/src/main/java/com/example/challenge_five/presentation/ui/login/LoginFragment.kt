@@ -9,12 +9,15 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.challenge_five.R
 import com.example.challenge_five.common.Status
 import com.example.challenge_five.databinding.FragmentLoginBinding
 import com.example.challenge_five.presentation.ui.ViewModelFactory
-import com.example.challenge_five.utils.UserPreferences
+import com.example.challenge_five.presentation.ui.login.utils.LoginViewModelFactory
+import com.example.challenge_five.presentation.ui.login.utils.SaveLoginViewModel
+import com.example.challenge_five.presentation.ui.login.utils.UserLoginPreferences
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -25,29 +28,33 @@ class LoginFragment : Fragment() {
         factory
     }
 
-    private var preferences: UserPreferences? = null
-
-    private var isLogin: Boolean? = false
+    private lateinit var saveLoginViewModelFactory: LoginViewModelFactory
+    private val saveLoginViewModel: SaveLoginViewModel by viewModels {
+        saveLoginViewModelFactory
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        factory = ViewModelFactory.getInstance(requireActivity())
         _binding = FragmentLoginBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        preferences = UserPreferences(view.context)
+
+        val userLoginPreferences = UserLoginPreferences(view.context)
+
+        saveLoginViewModelFactory = LoginViewModelFactory.getInstance(userLoginPreferences)
+        factory = ViewModelFactory.getInstance(requireActivity())
 
         binding.loginButton.setOnClickListener {
             login()
         }
         moveToRegister()
-        checkLoginState()
+        checkLogin()
     }
 
     override fun onDestroyView() {
@@ -69,30 +76,20 @@ class LoginFragment : Fragment() {
                 Status.SUCCESS -> {
                     if (it.data != null) {
                         setLoading(false)
-                        preferences?.getUser(it.data)
-                        preferences?.saveLoginState(true)
-                        moveToMovieList()
+                        saveLoginViewModel.setLogin(it.data.email!!)
+                        moveToMovieList(it.data.email!!)
+                        Log.d("Email", it.data.email.toString())
                     } else {
                         Toast.makeText(requireContext(), "Password Salah", Toast.LENGTH_LONG)
                             .show()
                     }
                 }
                 Status.ERROR -> {
-                    setLoading(true)
+                    setLoading(false)
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG)
                         .show()
                 }
             }
-        }
-    }
-
-    private fun checkLoginState() {
-        isLogin = preferences?.isLogin("login_state")
-
-        Log.d("isLogin", isLogin.toString())
-
-        if (isLogin == true) {
-            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
         }
     }
 
@@ -102,11 +99,22 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun moveToMovieList() {
-        findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+    private fun moveToMovieList(email: String) {
+        val direction = LoginFragmentDirections.actionLoginFragmentToMovieListFragment(email)
+        view?.findNavController()?.navigate(direction)
     }
 
     private fun setLoading(isLoading: Boolean) {
         binding.progressBar.isVisible = isLoading
+    }
+
+    private fun checkLogin() {
+        saveLoginViewModel.email.observe(requireActivity()) { email ->
+            if (email.isNotEmpty()) {
+                val directions =
+                    LoginFragmentDirections.actionLoginFragmentToMovieListFragment(email)
+                view?.findNavController()?.navigate(directions)
+            }
+        }
     }
 }

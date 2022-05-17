@@ -8,18 +8,23 @@
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.256" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.256" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.257" />
+        <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/ic_baseline_profile.xml" value="0.256" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/ic_broken_image_black.xml" value="0.257" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/ic_error.xml" value="0.196" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/ic_loading.xml" value="0.257" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/ic_refresh_black.xml" value="0.257" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/image_view_corner.xml" value="0.257" />
+        <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/drawable/toggle_button_selector.xml" value="0.283" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/activity_splash_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/fragment_favorite.xml" value="0.35688405797101447" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/fragment_login.xml" value="0.35688405797101447" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/fragment_main.xml" value="0.358695652173913" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/fragment_movie_detail.xml" value="0.33" />
+        <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/fragment_movie_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/fragment_profile.xml" value="0.35688405797101447" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/fragment_register.xml" value="0.35688405797101447" />
+        <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/fragment_splash_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/Kotlin/challenge_five/app/src/main/res/layout/item_container.xml" value="0.358695652173913" />
       </map>
     </option>

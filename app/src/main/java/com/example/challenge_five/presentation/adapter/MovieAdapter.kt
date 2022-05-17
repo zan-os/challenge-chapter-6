@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -14,7 +15,7 @@ import com.example.challenge_five.domain.model.Result
 import com.example.challenge_five.presentation.ui.movie_list.MovieListFragmentDirections
 
 class MovieAdapter(private val listMovie: List<Result>?, private val userId: Int) :
-    RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+    ListAdapter<Result, MovieAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     inner class ViewHolder(private val binding: ItemContainerBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -32,8 +33,8 @@ class MovieAdapter(private val listMovie: List<Result>?, private val userId: Int
                     .into(binding.posterImageView)
                 itemContainer.setOnClickListener {
                     val action =
-                        MovieListFragmentDirections.actionMainFragmentToMovieDetailFragment2(
-                            id = movie.id!!, userId = userId, movie = movie
+                        MovieListFragmentDirections.actionMovieListFragmentToMovieDetailFragment(
+                            id = movie.id, userId = userId, movie = movie
                         )
                     it.findNavController().navigate(action)
                 }

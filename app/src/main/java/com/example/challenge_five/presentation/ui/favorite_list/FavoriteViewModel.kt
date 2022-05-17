@@ -11,7 +11,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FavoriteViewModel @Inject constructor(
+class FavoriteViewModel(
     private val repository: MovieRepository
 ) : ViewModel() {
 

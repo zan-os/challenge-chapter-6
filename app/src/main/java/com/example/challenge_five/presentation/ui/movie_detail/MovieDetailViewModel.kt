@@ -11,7 +11,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MovieDetailViewModel @Inject constructor(
+class MovieDetailViewModel(
     private val repository: MovieRepository
 ) : ViewModel() {
     private val _favoriteMovie = MutableLiveData<Favorite?>()

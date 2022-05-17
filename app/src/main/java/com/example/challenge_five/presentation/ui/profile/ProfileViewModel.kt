@@ -7,7 +7,7 @@ import com.example.challenge_five.domain.repository.MovieRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ProfileViewModel @Inject constructor(
+class ProfileViewModel(
     private val getMovieRepository: MovieRepository
 ) : ViewModel() {
     private var update = 0

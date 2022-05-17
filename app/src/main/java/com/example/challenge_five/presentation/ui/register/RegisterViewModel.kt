@@ -9,7 +9,7 @@ import com.example.challenge_five.domain.repository.MovieRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class RegisterViewModel @Inject constructor(
+class RegisterViewModel(
     private val repository: MovieRepository
 ) : ViewModel() {
     private val register = MutableLiveData<Long>()

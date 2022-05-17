@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -89,8 +90,10 @@ class MovieDetailFragment : Fragment() {
                 if (result == null) {
                     movie.userId = userId
                     viewModel.addToFavorite(movie)
+                showToast("Berhasil menambahkan ke Favorite")
                 } else {
                     viewModel.removeFromFavorite(userId, result.movieId)
+                    showToast("Berhasil menghapus Favorite")
                 }
             }
             binding.toggleFavorite.isChecked = isFavorite
@@ -115,6 +118,10 @@ class MovieDetailFragment : Fragment() {
                 )
                 .into(binding.posterImageView)
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     private fun setLoading(isLoading: Boolean) {

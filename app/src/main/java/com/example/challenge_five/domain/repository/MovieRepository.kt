@@ -15,9 +15,8 @@ import com.example.challenge_five.domain.model.Result
 import com.example.challenge_five.domain.model.toEntity
 import okio.IOException
 import retrofit2.HttpException
-import javax.inject.Inject
 
-class MovieRepository @Inject constructor(
+class MovieRepository (
     private val apiService: ApiService,
     private val userDao: UserDao,
     private val movieDao: MovieDao

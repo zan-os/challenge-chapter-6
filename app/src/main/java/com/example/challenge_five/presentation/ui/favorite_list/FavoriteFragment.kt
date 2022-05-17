@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challenge_five.common.Resource
@@ -43,6 +44,7 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getFavoriteMovies()
+        moveToMovieList()
         Log.d("Data", "id $userId")
     }
 
@@ -73,5 +75,11 @@ class FavoriteFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun moveToMovieList() {
+        binding.toolbarId.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

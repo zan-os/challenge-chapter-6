@@ -25,16 +25,3 @@ data class Favorite(
     @SerializedName("vote_average")
     val voteAverage: Double?,
 )
-fun Favorite.toDomain(): FavoriteEntity =
-    FavoriteEntity(
-        id = id,
-        userId = userId,
-        movieId = id,
-        title = title,
-        posterPath = posterPath,
-        backdropPath = backdropPath,
-        releaseDate = releaseDate,
-        overview = overview,
-        popularity = popularity,
-        voteAverage = voteAverage,
-    )
